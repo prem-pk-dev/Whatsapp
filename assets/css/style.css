@@ -51,3 +51,25 @@ button,input,select,textarea{max-width:100%}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+
+/* Final mobile spacing, touch-target and long-content safeguards */
+@media(max-width:850px){
+  .button,.icon-btn,.filter-select{min-height:40px}
+  .contact-actions,.toolbar-actions{flex-wrap:wrap;min-width:0}
+  .contacts-toolbar,.module-head,.panel-heading{min-width:0}
+  .module-table-wrap,.table-wrap{width:100%;max-width:100%;overflow-x:auto}
+}
+@media(max-width:560px){
+  .notice>a{white-space:normal;max-width:calc(100% - 45px);overflow-wrap:anywhere}
+  .contact-actions{gap:8px}
+  .contact-actions .button{min-width:0;padding-left:10px;padding-right:10px}
+  .toolbar-actions{gap:8px}
+  .toolbar-actions .search-box{flex:1 1 100%;min-width:0}
+  .toolbar-actions .filter-select{flex:1 1 42%;min-width:0}
+  .toolbar-actions .button{flex:1 1 42%;min-width:0;justify-content:center}
+  .module-table td,.module-table th{overflow-wrap:anywhere}
+  .footer{align-items:flex-start}
+  .modal-actions{flex-wrap:wrap}
+  .modal-actions .button{flex:1 1 auto;justify-content:center}
+}
