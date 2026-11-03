@@ -14,6 +14,7 @@ const pages = [
 const css = readFileSync("assets/css/style.css", "utf8");
 const app = readFileSync("assets/js/app.js", "utf8");
 const settings = readFileSync("assets/js/settings-cloud.js", "utf8");
+const contacts = readFileSync("assets/js/contacts-cloud.js", "utf8");
 const failures = [];
 
 for (const page of pages) {
@@ -63,6 +64,7 @@ if (!css.includes("min-height:36px") || !css.includes(".module-panel .row-menu")
 if (!css.includes("overflow-wrap:anywhere")) failures.push("style.css: missing long-content wrapping safeguard");
 if (!settings.includes("WhatsApp Business App") || !settings.includes("Personal WhatsApp Messenger")) failures.push("settings-cloud.js: missing clear account-type connection guidance");
 if (!settings.includes("Same-number route")) failures.push("settings-cloud.js: missing same-number migration guidance");
+if (!contacts.includes("function visibleRows()") || !contacts.includes('visibleRows().forEach(r=>e.target.checked?selected.add(r.id):selected.delete(r.id))')) failures.push("contacts-cloud.js: select-all must only affect currently filtered/visible contacts");
 if (!settings.includes("Do not share your SMS/OTP")) failures.push("settings-cloud.js: missing OTP safety warning");
 if (!settings.includes("developers.facebook.com/docs/whatsapp/embedded-signup/")) failures.push("settings-cloud.js: missing official Embedded Signup documentation link");
 if (!settings.includes("developers.facebook.com/docs/whatsapp/cloud-api/")) failures.push("settings-cloud.js: missing official Cloud API documentation link");
