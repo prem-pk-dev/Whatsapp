@@ -44,6 +44,8 @@ jobs:
           node-version: 22
       - name: Validate Worker JavaScript syntax
         run: node --check cloudflare/worker.js
+      - name: Validate WhatsApp settings module syntax
+        run: node --check assets/js/settings-cloud.js
       - name: Check responsive page navigation and layout safeguards
         run: node scripts/check-responsive.mjs
       - name: Verify required deployment configuration
