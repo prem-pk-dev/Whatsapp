@@ -167,3 +167,58 @@ button:disabled,.button:disabled{
   .settings-section{padding:16px!important}
   .settings-form{gap:16px}
 }
+
+
+/* Layout consistency pass: predictable sizing, spacing and resilient content grids */
+:root{--content-gutter:clamp(14px,3vw,42px)}
+*,*::before,*::after{box-sizing:border-box}
+.content{padding-left:var(--content-gutter);padding-right:var(--content-gutter)}
+.dashboard-grid,.bottom-grid{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}
+.dashboard-grid>* ,.bottom-grid>*{min-width:0}
+.stats-grid,.contact-stats,.analytics-cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+.panel,.stat-card,.contacts-panel,.module-panel{min-width:0}
+.panel-heading,.module-head,.contacts-toolbar{min-width:0}
+.panel-heading>*,.module-head>*,.contacts-toolbar>*{min-width:0}
+button,.button,a,input,select,textarea{touch-action:manipulation}
+input,select,textarea{max-width:100%}
+p,small,b,strong,td,th,a,button{overflow-wrap:anywhere}
+.module-note,.notice,.settings-section{line-height:1.65}
+.module-panel .module-table-wrap{margin-top:12px}
+.module-panel .module-head{margin-bottom:14px}
+.settings-divider{margin:22px 0}
+@media(max-width:1150px){
+  .content{padding-top:26px;padding-bottom:22px}
+  .dashboard-grid,.bottom-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:850px){
+  .stats-grid,.contact-stats,.analytics-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .topbar{padding-left:18px;padding-right:18px}
+  .main{width:100%;margin-left:0}
+}
+@media(max-width:560px){
+  .content{padding:18px 13px 20px}
+  .welcome-row{margin-bottom:17px}
+  .notice{gap:10px;padding:12px}
+  .notice>a{margin-left:42px}
+  .stats-grid,.contact-stats,.analytics-cards{gap:9px}
+  .stat-card{min-height:132px;padding:12px}
+  .stat-value{font-size:clamp(20px,6vw,24px)}
+  .panel{padding:14px;border-radius:15px}
+  .panel-heading{align-items:flex-start;flex-wrap:wrap}
+  .panel-heading>p{max-width:100%}
+  .module-panel{padding:13px!important}
+  .module-head .button,.module-head .button-group{max-width:100%}
+  .inbox-compose,.chat-window form{align-items:stretch}
+  .inbox-compose>* ,.chat-window form>*{min-width:0}
+  .footer{padding-top:17px}
+  .contact-modal{border-radius:16px}
+}
+@media(max-width:380px){
+  .topbar{padding-left:10px;padding-right:10px}
+  .top-actions{gap:2px}
+  .breadcrumbs{font-size:10px;gap:6px}
+  .stats-grid,.contact-stats,.analytics-cards{grid-template-columns:minmax(0,1fr)}
+  .stat-card{min-height:112px}
+  .stat-value{margin-top:7px}
+  .toolbar-actions .filter-select,.toolbar-actions .button{flex-basis:100%}
+}
