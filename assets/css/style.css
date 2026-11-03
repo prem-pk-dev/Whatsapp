@@ -102,3 +102,50 @@ button:disabled,.button:disabled{
   .stat-card{min-height:125px}
   .panel-heading{align-items:flex-start;flex-wrap:wrap}
 }
+
+
+/* Data-table usability: keep wide records scrollable without breaking the page grid. */
+.module-table-wrap{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid #edf1ee;
+  border-radius:12px;
+}
+.module-table{
+  min-width:560px;
+  table-layout:auto;
+}
+.module-table th,.module-table td{white-space:normal;vertical-align:middle}
+.module-table th:last-child,.module-table td:last-child{white-space:nowrap}
+.module-table td{overflow-wrap:anywhere}
+.module-panel .row-menu{
+  display:inline-flex;
+  min-height:36px;
+  align-items:center;
+  justify-content:center;
+  padding:7px 10px;
+  border:1px solid #e4eee7;
+  border-radius:8px;
+  background:#fff;
+  cursor:pointer;
+}
+.module-panel .row-menu:hover{background:#f1f7f2}
+.module-empty{line-height:1.6}
+.module-note{overflow-wrap:anywhere}
+@media(max-width:650px){
+  .module-table-wrap{border-radius:10px}
+  .module-table{min-width:600px}
+  .module-table th,.module-table td{padding:11px 10px}
+  .module-head{gap:8px}
+  .module-head .connection-state{align-self:flex-start}
+  .contact-modal{overflow-y:auto;overscroll-behavior:contain}
+}
+@media(max-width:380px){
+  .module-panel{padding:14px!important}
+  .module-note{padding:10px}
+  .modal-backdrop{padding:10px}
+}
