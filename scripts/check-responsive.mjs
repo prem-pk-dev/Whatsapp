@@ -54,6 +54,8 @@ if (!css.includes("white-space:normal;max-width:calc(100% - 45px)")) {
   failures.push("style.css: missing narrow-screen notice wrapping");
 }
 if (!css.includes(":focus-visible")) failures.push("style.css: missing visible keyboard focus styles");
+if (!css.includes("box-sizing:border-box")) failures.push("style.css: missing consistent box sizing");
+if (!css.includes("minmax(0,1fr)")) failures.push("style.css: missing overflow-safe grid columns");
 if (!css.includes("@media(max-width:360px)")) failures.push("style.css: missing very-narrow phone layout");
 if (!css.includes("font-size:16px")) failures.push("style.css: missing mobile form font sizing to prevent browser zoom");
 if (!css.includes("overscroll-behavior-x:contain") || !css.includes("-webkit-overflow-scrolling:touch")) failures.push("style.css: missing touch-friendly horizontal table scrolling");
