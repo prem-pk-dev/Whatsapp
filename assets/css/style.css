@@ -149,3 +149,21 @@ button:disabled,.button:disabled{
   .module-note{padding:10px}
   .modal-backdrop{padding:10px}
 }
+
+
+/* Settings connection guide layout */
+.settings-section{min-width:0;overflow-wrap:anywhere}
+.settings-section p{max-width:760px;line-height:1.7;margin:8px 0;color:#718077;font-size:12px}
+.settings-section p b{color:#344139}
+.settings-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0}
+.settings-actions .button{min-height:40px;white-space:normal;text-align:center}
+.settings-form{width:100%;max-width:560px;min-width:0}
+.settings-form .settings-field{min-width:0}
+.settings-form input,.settings-form select{width:100%;min-height:42px;font-size:14px}
+#saveState{min-width:0;overflow-wrap:anywhere;line-height:1.5}
+@media(max-width:560px){
+  .settings-actions{align-items:stretch;flex-direction:column}
+  .settings-actions .button{width:100%;justify-content:center}
+  .settings-section{padding:16px!important}
+  .settings-form{gap:16px}
+}
