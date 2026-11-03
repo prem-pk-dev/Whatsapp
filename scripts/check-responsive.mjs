@@ -55,6 +55,9 @@ if (!css.includes("white-space:normal;max-width:calc(100% - 45px)")) {
 if (!css.includes(":focus-visible")) failures.push("style.css: missing visible keyboard focus styles");
 if (!css.includes("@media(max-width:360px)")) failures.push("style.css: missing very-narrow phone layout");
 if (!css.includes("font-size:16px")) failures.push("style.css: missing mobile form font sizing to prevent browser zoom");
+if (!css.includes("overscroll-behavior-x:contain") || !css.includes("-webkit-overflow-scrolling:touch")) failures.push("style.css: missing touch-friendly horizontal table scrolling");
+if (!css.includes("min-height:36px") || !css.includes(".module-panel .row-menu")) failures.push("style.css: missing usable table row action targets");
+if (!css.includes("overflow-wrap:anywhere")) failures.push("style.css: missing long-content wrapping safeguard");
 
 if (failures.length) {
   console.error(failures.join("\n"));
