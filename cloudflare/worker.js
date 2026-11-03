@@ -46,7 +46,7 @@ async function handle(request) {
   const params = new URLSearchParams({ user_id: "eq." + user.id });
   if (method === "GET") {
     params.set("select", "*");
-    params.set("limit", "100");
+    params.set("limit", "1000");
     if (url.searchParams.has("id")) params.set("id", "eq." + url.searchParams.get("id"));
   } else if (["POST","PATCH","DELETE"].includes(method)) {
     if (method !== "POST") {
