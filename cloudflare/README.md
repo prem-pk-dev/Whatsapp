@@ -12,6 +12,18 @@ The repository root includes `wrangler.toml`, which sets the Worker name, entry 
 npx wrangler deploy
 ```
 
+### Optional automatic deployment from GitHub
+
+A GitHub Actions workflow is included at `.github/workflows/deploy-worker.yml`. To enable it:
+
+1. In Cloudflare, create an API token with permission to edit Workers for this account.
+2. In the GitHub repository, open **Settings → Secrets and variables → Actions → New repository secret**.
+3. Name the secret `CLOUDFLARE_API_TOKEN` and paste the token value.
+4. Push a change to `cloudflare/worker.js` or `wrangler.toml`, or run the workflow manually from **Actions → Deploy WA Studio API Worker → Run workflow**.
+5. Confirm the workflow run succeeds, then check the `/health` endpoint below.
+
+Never paste the token into source files, commit it, or send it in chat. The workflow cannot deploy until the repository secret is configured.
+
 Keep the existing `workers.dev` hostname enabled for the `wa-studio-api` Worker. The frontend currently calls:
 
 `https://wa-studio-api.prem92006.workers.dev`
