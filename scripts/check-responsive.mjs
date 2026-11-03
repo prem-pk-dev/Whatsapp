@@ -13,6 +13,7 @@ const pages = [
 ];
 const css = readFileSync("assets/css/style.css", "utf8");
 const app = readFileSync("assets/js/app.js", "utf8");
+const settings = readFileSync("assets/js/settings-cloud.js", "utf8");
 const failures = [];
 
 for (const page of pages) {
@@ -58,6 +59,9 @@ if (!css.includes("font-size:16px")) failures.push("style.css: missing mobile fo
 if (!css.includes("overscroll-behavior-x:contain") || !css.includes("-webkit-overflow-scrolling:touch")) failures.push("style.css: missing touch-friendly horizontal table scrolling");
 if (!css.includes("min-height:36px") || !css.includes(".module-panel .row-menu")) failures.push("style.css: missing usable table row action targets");
 if (!css.includes("overflow-wrap:anywhere")) failures.push("style.css: missing long-content wrapping safeguard");
+if (!settings.includes("WhatsApp Business app") || !settings.includes("Personal WhatsApp Messenger")) failures.push("settings-cloud.js: missing clear account-type connection guidance");
+if (!settings.includes("developers.facebook.com/docs/whatsapp/cloud-api/")) failures.push("settings-cloud.js: missing official Cloud API documentation link");
+if (!css.includes(".settings-actions") || !css.includes("@media(max-width:560px)")) failures.push("style.css: missing responsive settings action layout");
 
 if (failures.length) {
   console.error(failures.join("\n"));
