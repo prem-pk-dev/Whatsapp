@@ -38,10 +38,17 @@ async function loadReport() {
   document.querySelector(".stats-grid").innerHTML =
     '<article class="stat-card"><div class="stat-top"><span>Total contacts</span></div><div class="stat-value">'+contacts+'</div><div class="stat-foot">Cloud records</div></article>' +
     '<article class="stat-card"><div class="stat-top"><span>Total messages</span></div><div class="stat-value">'+messages.total+'</div><div class="stat-foot">Stored message records</div></article>';
-  panel.innerHTML = '<div class="panel-heading"><div><h2>Workspace analytics</h2><p>Supabase records · all time and last 30 days</p></div><span class="connection-state">Live database</span></div>' +
+  panel.innerHTML = '<div class="panel-heading"><div><h2>Workspace analytics</h2><p>Supabase records · all time and last 30 days · refreshed ' + new Date().toLocaleTimeString() + '</p></div><div><span class="connection-state">Live database</span> <button class="button button-outline" id="refreshAnalytics" type="button">Refresh</button></div></div>' +
     '<div class="module-table-wrap"><table class="module-table"><thead><tr><th>MODULE</th><th>ALL TIME</th><th>LAST 30 DAYS</th></tr></thead><tbody>' +
     report.map(x=>'<tr><td><b>'+x.label+'</b></td><td>'+x.total+'</td><td>'+x.recent+'</td></tr>').join("") +
     '</tbody></table></div><p class="module-note">Counts are scoped to your signed-in account by Supabase RLS. They measure saved records, not WhatsApp delivery, read receipts, clicks, or conversions. Those metrics require verified Meta webhook events.</p>';
+  panel.querySelector("#refreshAnalytics")?.addEventListener("click", async event => {
+    const control = event.currentTarget;
+    control.disabled = true;
+    control.textContent = "Refreshing…";
+    try { await loadReport(); showToast("Analytics refreshed from Supabase."); }
+    catch (error) { showToast("Refresh failed: " + error.message); }
+  });
 }
 function exportReport() {
   if (!report.length) return showToast("Report is still loading.");
@@ -58,7 +65,13 @@ document.addEventListener("DOMContentLoaded",async()=>{
   button?.addEventListener("click",exportReport);
   try { await loadReport(); }
   catch(error) {
-    panel.innerHTML = '<div class="panel-heading"><div><h2>Analytics unavailable</h2><p>'+safe(error.message)+'</p></div><span class="connection-state">Needs attention</span></div>';
+    panel.innerHTML = '<div class="panel-heading"><div><h2>Analytics unavailable</h2><p>'+safe(error.message)+'</p></div><span class="connection-state">Needs attention</span></div><div style="padding:20px"><button class="button button-primary" id="retryAnalytics" type="button">Retry loading analytics</button></div>';
+    panel.querySelector("#retryAnalytics")?.addEventListener("click", async event => {
+      event.currentTarget.disabled = true;
+      event.currentTarget.textContent = "Retrying…";
+      try { await loadReport(); showToast("Analytics loaded successfully."); }
+      catch (retryError) { event.currentTarget.disabled = false; event.currentTarget.textContent = "Retry loading analytics"; showToast(retryError.message); }
+    });
     showToast("Cloud analytics could not load.");
   }
 });
