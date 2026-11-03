@@ -5,9 +5,9 @@ Premium, responsive frontend for consent-based customer communication.
 ## Working frontend modules
 - Overview dashboard and responsive navigation.
 - Contacts: create, edit, delete, search, filter, CSV import/export, duplicate detection and consent status.
-- Campaigns: create, edit and delete local campaign drafts/schedules.
-- Inbox: create local conversations and compose local demo messages.
-- Groups: save group plans and copy invitation wording; no forced member additions.
+- Campaigns: create, edit and delete local campaign drafts; scheduled status requires a valid future date.
+- Inbox: create local conversations, save local message drafts, and hand off a prefilled message to WhatsApp using click-to-chat (the user reviews and sends it).
+- Groups: save group plans and copy invitation wording; add and open a WhatsApp invite URL created in WhatsApp. No forced member additions.
 - Automations: create, pause/resume and delete local rule drafts.
 - Templates: create, edit and delete local message template drafts.
 - Analytics: live counts from browser-local demo data; no fabricated provider delivery statistics.
