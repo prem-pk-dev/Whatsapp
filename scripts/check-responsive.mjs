@@ -35,6 +35,18 @@ if (!app.includes("Escape") || !app.includes("aria-expanded")) {
   failures.push("app.js: missing accessible Escape/expanded-state handling");
 }
 
+let braceDepth = 0;
+for (const character of css) {
+  if (character === "{") braceDepth++;
+  if (character === "}") braceDepth--;
+  if (braceDepth < 0) break;
+}
+if (braceDepth !== 0) failures.push("style.css: unbalanced CSS braces");
+if (!css.includes("min-height:40px")) failures.push("style.css: missing mobile touch target sizing");
+if (!css.includes("white-space:normal;max-width:calc(100% - 45px)")) {
+  failures.push("style.css: missing narrow-screen notice wrapping");
+}
+
 if (failures.length) {
   console.error(failures.join("\n"));
   process.exit(1);
