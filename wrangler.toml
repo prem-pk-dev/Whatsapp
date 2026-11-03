@@ -1,0 +1,8 @@
+name = "wa-studio-api"
+main = "cloudflare/worker.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+# No secrets are required by this Worker.
+# The Supabase publishable key is sent by the signed-in frontend client.
+# Never add a Supabase service-role key to this file.
