@@ -46,7 +46,6 @@ async function handle(request) {
   const params = new URLSearchParams({ user_id: "eq." + user.id });
   if (method === "GET") {
     params.set("select", "*");
-    params.set("order", "created_at.desc");
     params.set("limit", "100");
     if (url.searchParams.has("id")) params.set("id", "eq." + url.searchParams.get("id"));
   } else if (["POST","PATCH","DELETE"].includes(method)) {
@@ -92,6 +91,7 @@ async function handle(request) {
   if (body) headers["content-type"] = "application/json";
   if (method === "POST") body.user_id = user.id;
 
+  if (method === "GET") params.set("order", (table === "conversations" || table === "settings") ? "updated_at.desc" : "created_at.desc");
   const endpoint = DB + "/rest/v1/" + table + (method === "POST" ? "" : "?" + params.toString());
   const response = await fetch(endpoint, { method, headers, body: body ? JSON.stringify(body) : undefined });
   return new Response(await response.text(), {
