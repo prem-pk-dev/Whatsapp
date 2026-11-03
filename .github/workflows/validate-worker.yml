@@ -1,0 +1,37 @@
+name: Validate WA Studio API Worker
+
+on:
+  pull_request:
+    paths:
+      - "cloudflare/worker.js"
+      - "wrangler.toml"
+      - ".github/workflows/validate-worker.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "cloudflare/worker.js"
+      - "wrangler.toml"
+      - ".github/workflows/validate-worker.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate Worker JavaScript syntax
+        run: node --check cloudflare/worker.js
+      - name: Verify required deployment configuration
+        shell: bash
+        run: |
+          grep -q '^name = "wa-studio-api"$' wrangler.toml
+          grep -q '^main = "cloudflare/worker.js"$' wrangler.toml
+          grep -q '^workers_dev = true$' wrangler.toml
