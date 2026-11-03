@@ -5,9 +5,11 @@ This directory contains the API Worker source used by the WA Studio frontend.
 ## Deploy
 
 From the repository root, with Wrangler authenticated to the Cloudflare account that owns `wa-studio-api`:
+The repository root includes `wrangler.toml`, which sets the Worker name, entry file, compatibility date, and `workers.dev` setting.
+
 
 ```bash
-npx wrangler deploy cloudflare/worker.js --name wa-studio-api --compatibility-date 2025-01-01
+npx wrangler deploy
 ```
 
 Keep the existing `workers.dev` hostname enabled for the `wa-studio-api` Worker. The frontend currently calls:
