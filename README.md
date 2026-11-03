@@ -1,24 +1,32 @@
 # WA Studio — WhatsApp Communication Workspace
 
-A premium, responsive frontend prototype for consent-based WhatsApp customer communication.
+Premium, responsive frontend for consent-based customer communication.
 
-## Current build
-- Apple-inspired visual language: restrained surfaces, generous spacing, subtle translucency, refined typography and motion.
-- Responsive dashboard with workspace navigation, KPI cards, performance chart, connection preview, activity feed and quick actions.
-- Separate HTML/CSS/JavaScript assets; no build step required.
-- Demo metrics are illustrative and do not represent live WhatsApp data.
+## Working frontend modules
+- Overview dashboard and responsive navigation.
+- Contacts: create, edit, delete, search, filter, CSV import/export, duplicate detection and consent status.
+- Campaigns: create, edit and delete local campaign drafts/schedules.
+- Inbox: create local conversations and compose local demo messages.
+- Groups: save group plans and copy invitation wording; no forced member additions.
+- Automations: create, pause/resume and delete local rule drafts.
+- Templates: create, edit and delete local message template drafts.
+- Analytics: live counts from browser-local demo data; no fabricated provider delivery statistics.
+- Settings: save local workspace preferences.
 
-## Run locally
-Open `index.html` in a browser, or serve this folder with any static file server.
+## Run / deploy
+Open `index.html` in a browser or publish this repository with GitHub Pages. It is a static site; no build command is required.
 
-## Deploy
-This is a static frontend and can be hosted on GitHub Pages or Vercel. Connect the repository and use the project root as the deployment root; no build command is required.
+## Data and limitations
+This build uses browser LocalStorage. Data is local to one browser/device and is not a multi-user database. Clearing browser storage may remove it. Do not store API tokens, secrets, or sensitive customer information in this public frontend.
 
-## WhatsApp integration boundary
-The interface is currently a frontend demo. It does not send WhatsApp messages or create WhatsApp groups. Real messaging requires the official WhatsApp Business Platform, approved templates where applicable, valid opt-in, webhook handling and secure server-side credentials. Group invitation flows must allow people to choose to join; the app must not force-add members or automate unsolicited outreach.
+The inbox, campaign actions, automation rules, group plans, and templates are frontend workflows and do not deliver WhatsApp messages. The Groups page stores plans and invitation copy only; it does not create a WhatsApp group or add participants.
+
+## Real WhatsApp integration
+Real inbound/outbound messaging requires the official WhatsApp Business Platform, a server-side integration, secure credentials, webhook endpoints, business onboarding and compliance with opt-in/template policies. Messages to customers must be expected and permission-based. Business-initiated messages may require approved templates. Group capabilities are subject to WhatsApp eligibility and invite-based joining.
+
+Official starting point: https://whatsappbusiness.com/developers/developer-hub/
 
 ## Design
-- Font stack: system UI / DM Sans / Manrope.
-- Palette: deep evergreen, soft mint, warm neutral canvas.
-- Icons: Lucide.
-- Charts: lightweight inline SVG.
+- Premium evergreen and mint palette.
+- Manrope / DM Sans typography with system fallbacks.
+- Lucide icons, responsive layout and subtle transitions.
