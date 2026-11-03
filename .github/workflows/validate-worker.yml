@@ -9,6 +9,10 @@ on:
       - "assets/css/style.css"
       - "assets/js/app.js"
       - "scripts/check-responsive.mjs"
+      - "*.html"
+      - "assets/css/style.css"
+      - "assets/js/app.js"
+      - "scripts/check-responsive.mjs"
       - ".github/workflows/validate-worker.yml"
   push:
     branches:
@@ -16,6 +20,10 @@ on:
     paths:
       - "cloudflare/worker.js"
       - "wrangler.toml"
+      - "*.html"
+      - "assets/css/style.css"
+      - "assets/js/app.js"
+      - "scripts/check-responsive.mjs"
       - ".github/workflows/validate-worker.yml"
 
 permissions:
