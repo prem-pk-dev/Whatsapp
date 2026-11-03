@@ -73,3 +73,32 @@ button,input,select,textarea{max-width:100%}
   .modal-actions{flex-wrap:wrap}
   .modal-actions .button{flex:1 1 auto;justify-content:center}
 }
+
+
+/* Accessibility and small-screen interaction polish */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{
+  outline:3px solid #168653;
+  outline-offset:3px;
+}
+button:disabled,.button:disabled{
+  cursor:not-allowed;
+  opacity:.58;
+}
+@media(max-width:560px){
+  .auth-wrap{padding:16px}
+  .auth-card{padding:24px 20px;border-radius:18px}
+  .auth-card h1{font-size:25px}
+  .auth-card input,.contact-modal input:not([type=checkbox]),.contact-modal select,
+  .settings-form input,.settings-form select,.settings-form textarea,
+  .inbox-compose input,.chat-window input{font-size:16px}
+  .topbar,.content{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+  .toast{bottom:max(12px,env(safe-area-inset-bottom))}
+  .contact-modal{width:100%;max-height:calc(100dvh - max(20px,env(safe-area-inset-top) + 10px));}
+}
+@media(max-width:360px){
+  .stats-grid,.contact-stats,.analytics-cards{grid-template-columns:minmax(0,1fr)}
+  .top-actions .status-pill{display:none}
+  .welcome-row h1{font-size:22px;letter-spacing:-.6px}
+  .stat-card{min-height:125px}
+  .panel-heading{align-items:flex-start;flex-wrap:wrap}
+}
