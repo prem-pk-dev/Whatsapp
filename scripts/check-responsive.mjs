@@ -46,6 +46,9 @@ if (!css.includes("min-height:40px")) failures.push("style.css: missing mobile t
 if (!css.includes("white-space:normal;max-width:calc(100% - 45px)")) {
   failures.push("style.css: missing narrow-screen notice wrapping");
 }
+if (!css.includes(":focus-visible")) failures.push("style.css: missing visible keyboard focus styles");
+if (!css.includes("@media(max-width:360px)")) failures.push("style.css: missing very-narrow phone layout");
+if (!css.includes("font-size:16px")) failures.push("style.css: missing mobile form font sizing to prevent browser zoom");
 
 if (failures.length) {
   console.error(failures.join("\n"));
