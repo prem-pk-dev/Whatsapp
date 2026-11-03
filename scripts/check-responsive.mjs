@@ -34,6 +34,12 @@ for (const rule of [
 if (!app.includes("Escape") || !app.includes("aria-expanded")) {
   failures.push("app.js: missing accessible Escape/expanded-state handling");
 }
+if (!app.includes("modal-backdrop.open") || !app.includes("MutationObserver")) {
+  failures.push("app.js: missing shared modal dismissal/focus initialization");
+}
+if (!app.includes("event.key==='Tab'") || !app.includes("last.focus()")) {
+  failures.push("app.js: missing modal keyboard focus trap");
+}
 
 let braceDepth = 0;
 for (const character of css) {
