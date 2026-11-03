@@ -10,11 +10,6 @@ on:
       - "assets/js/app.js"
       - "assets/js/settings-cloud.js"
       - "scripts/check-responsive.mjs"
-      - "*.html"
-      - "assets/css/style.css"
-      - "assets/js/app.js"
-      - "assets/js/settings-cloud.js"
-      - "scripts/check-responsive.mjs"
       - ".github/workflows/validate-worker.yml"
   push:
     branches:
