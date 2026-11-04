@@ -222,3 +222,19 @@ p,small,b,strong,td,th,a,button{overflow-wrap:anywhere}
   .stat-value{margin-top:7px}
   .toolbar-actions .filter-select,.toolbar-actions .button{flex-basis:100%}
 }
+
+
+/* Keep workspace navigation/header visible while the page content scrolls. */
+.topbar{
+  position:fixed;
+  top:0;
+  left:254px;
+  right:0;
+  width:auto;
+  z-index:15;
+}
+.main{padding-top:70px}
+@media(max-width:850px){
+  .topbar{left:0;right:0;width:100%;height:60px}
+  .main{padding-top:60px}
+}
