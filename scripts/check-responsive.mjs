@@ -70,6 +70,13 @@ if (!settings.includes("developers.facebook.com/docs/whatsapp/embedded-signup/")
 if (!settings.includes("developers.facebook.com/docs/whatsapp/cloud-api/")) failures.push("settings-cloud.js: missing official Cloud API documentation link");
 if (!css.includes(".settings-actions") || !css.includes("@media(max-width:560px)")) failures.push("style.css: missing responsive settings action layout");
 
+
+const auth = readFileSync("assets/js/auth.js", "utf8");
+const authPage = readFileSync("auth.html", "utf8");
+if (!auth.includes('supabase.auth.verifyOtp({email:pendingEmail||email,token,type:"signup"})')) failures.push("auth.js: signup must verify the email OTP");
+if (!auth.includes('supabase.auth.resend({type:"signup",email:pendingEmail})')) failures.push("auth.js: signup must support OTP resend");
+if (!authPage.includes('autocomplete="one-time-code"') || !authPage.includes('maxlength="6"')) failures.push("auth.html: missing accessible six-digit OTP input");
+
 if (failures.length) {
   console.error(failures.join("\n"));
   process.exit(1);
