@@ -69,6 +69,7 @@ if (!settings.includes("Do not share your SMS/OTP")) failures.push("settings-clo
 if (!settings.includes("developers.facebook.com/docs/whatsapp/embedded-signup/")) failures.push("settings-cloud.js: missing official Embedded Signup documentation link");
 if (!settings.includes("developers.facebook.com/docs/whatsapp/cloud-api/")) failures.push("settings-cloud.js: missing official Cloud API documentation link");
 if (!css.includes(".settings-actions") || !css.includes("@media(max-width:560px)")) failures.push("style.css: missing responsive settings action layout");
+if (!css.includes(".topbar{\n  position:fixed;") || !css.includes(".main{padding-top:70px}") || !css.includes(".main{padding-top:60px}")) failures.push("style.css: header must remain fixed above scrolling content on desktop and mobile");
 
 
 const auth = readFileSync("assets/js/auth.js", "utf8");
