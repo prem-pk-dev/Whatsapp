@@ -12,6 +12,8 @@ const setMode=(next)=>{
   $("passwordField").hidden=mode==="otp";
   $("otpField").hidden=mode!=="otp";
   $("switchMode").hidden=mode==="otp";
+  $("otpHint").hidden=mode!=="otp";
+  $("resendOtp").hidden=mode!=="otp";
   $("password").required=mode!=="otp";
   $("otp").required=mode==="otp";
   $("password").autocomplete=mode==="login"?"current-password":"new-password";
