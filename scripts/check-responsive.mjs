@@ -74,9 +74,13 @@ if (!css.includes(".topbar{\n  position:fixed;") || !css.includes(".main{padding
 
 const auth = readFileSync("assets/js/auth.js", "utf8");
 const authPage = readFileSync("auth.html", "utf8");
+const profileMenu = readFileSync("assets/js/profile-menu.js", "utf8");
 if (!auth.includes('supabase.auth.verifyOtp({email:pendingEmail||email,token,type:"signup"})')) failures.push("auth.js: signup must verify the email OTP");
 if (!auth.includes('supabase.auth.resend({type:"signup",email:pendingEmail})')) failures.push("auth.js: signup must support OTP resend");
 if (!authPage.includes('autocomplete="one-time-code"') || !authPage.includes('maxlength="6"')) failures.push("auth.html: missing accessible six-digit OTP input");
+
+if (!profileMenu.includes("supabase.auth.signOut()") || !profileMenu.includes("supabase.auth.getUser()")) failures.push("profile-menu.js: missing profile details/sign-out action");
+for (const page of pages) { const html = readFileSync(page, "utf8"); if (!html.includes("assets/js/profile-menu.js")) failures.push(page + ": missing profile menu module"); }
 
 if (failures.length) {
   console.error(failures.join("\n"));
